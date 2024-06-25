@@ -3,7 +3,7 @@ package gui;
 import javax.swing.*;
 
 public class Server {
-    public static void main(String[] args) {
+    public Server(){
         JFrame jFrame = new JFrame("server");
         jFrame.setSize(450, 450);
         jFrame.setLayout(new BoxLayout(jFrame.getContentPane(), BoxLayout.Y_AXIS));
