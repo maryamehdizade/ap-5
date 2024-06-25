@@ -3,6 +3,7 @@ package Requests;
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 
 public class RequestHandler {
@@ -19,7 +20,12 @@ public class RequestHandler {
         }
     }
 
-    public void handleLoginReq(){
+    public void handleLoginReq(String username, String passworld){
+        try{
+            send.writeUTF("login:" + username + ":" + passworld);
+        }catch (IOException ioException){
+            ioException.printStackTrace();
+        }
 
     }
     public void handleSIgnUpReq(String username, String password){
