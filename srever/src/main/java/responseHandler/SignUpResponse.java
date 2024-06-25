@@ -1,4 +1,4 @@
 package responseHandler;
 
-public class SignUpResponse {
+public class SignUpResponse extends Response{
 }

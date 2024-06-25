@@ -29,7 +29,6 @@ public class Login {
         login.addActionListener(e -> {
             RequestHandler.establishConnection("127.0.0.1", 1234);
             RequestHandler.handleLoginReq(this.username, this.password);
-
         });
 
 
