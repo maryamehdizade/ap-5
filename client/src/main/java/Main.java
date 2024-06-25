@@ -29,6 +29,11 @@ public class Main {
             new Login();
             jFrame.dispose();
         });
+        jPanel.add(signup);
+        jPanel.add(login);
+
+        jFrame.add(jPanel);
+        jFrame.setVisible(true);
 
     }
 }

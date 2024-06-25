@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class RequestHandler {
-    private Socket socket;
-    private DataOutputStream send;
-    private DataInputStream recieve;
-    public void establishConnection(String address, int port){
+    private static Socket socket;
+    private static DataOutputStream send;
+    private static DataInputStream recieve;
+    public static void establishConnection(String address, int port){
         try {
             socket = new Socket(address, port);
             send = new DataOutputStream(socket.getOutputStream());
@@ -20,15 +20,19 @@ public class RequestHandler {
         }
     }
 
-    public void handleLoginReq(String username, String passworld){
+    public static void handleLoginReq(String username, String password){
         try{
-            send.writeUTF("login:" + username + ":" + passworld);
+            send.writeUTF("login:" + username + ":" + password);
         }catch (IOException ioException){
             ioException.printStackTrace();
         }
 
     }
     public void handleSIgnUpReq(String username, String password){
-
+        try{
+            send.writeUTF("signup:" + username + ":" + password);
+        }catch (IOException ioException){
+            ioException.printStackTrace();
+        }
     }
 }
