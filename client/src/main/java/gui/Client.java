@@ -4,10 +4,12 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+import static costant.Constant.FRAME_SIZE;
+
 public class Client {
     public Client(){
         JFrame jFrame = new JFrame("client");
-        jFrame.setSize(450, 450);
+        jFrame.setSize(FRAME_SIZE, FRAME_SIZE);
         jFrame.setLayout(new BoxLayout(jFrame.getContentPane(), BoxLayout.Y_AXIS));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

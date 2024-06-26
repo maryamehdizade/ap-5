@@ -5,12 +5,15 @@ import Requests.RequestHandler;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import static costant.Constant.FRAME_SIZE;
+import static costant.Constant.PORT;
+
 public class SignUp {
     private String username;
     private String password;
     public SignUp(){
         JFrame jFrame = new JFrame("client");
-        jFrame.setSize(450, 450);
+        jFrame.setSize(FRAME_SIZE, FRAME_SIZE);
         jFrame.setLayout(new BoxLayout(jFrame.getContentPane(), BoxLayout.Y_AXIS));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -26,7 +29,7 @@ public class SignUp {
 
         JButton login = new JButton("Sign up");
         login.addActionListener(e -> {
-            RequestHandler.establishConnection("127.0.0.1", 1234);
+            RequestHandler.establishConnection("127.0.0.1", PORT);
             RequestHandler.handleSIgnUpReq(this.username, this.password);
         });
         jPanel.add(username);
