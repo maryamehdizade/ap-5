@@ -3,8 +3,7 @@ package server;
 
 
 import data.Data;
-import responseHandler.LoginResponse;
-import responseHandler.SignUpResponse;
+import responseHandler.Response;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -45,11 +44,11 @@ public class server {
             String[] data = massage.split(":");
             switch (data[0]){
                 case "login" -> {
-                    send.writeUTF(new LoginResponse(data).getResponse());
+                    send.writeUTF(Response.LoginResponse(data));
                     System.out.println("login");
                 }
                 case "signup" -> {
-                    send.writeUTF(new SignUpResponse().getResponse());
+                    send.writeUTF(Response.signUpResponse(data));
                     System.out.println("signup");
                 }
             }

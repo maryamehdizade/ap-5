@@ -1,5 +1,7 @@
 package Requests;
 
+import responses.handleResponse;
+
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,13 +26,13 @@ public class RequestHandler {
         try{
             send.writeUTF("login:" + username + ":" + password);
             String response = recieve.readUTF();
-
+            handleResponse.handleLoginResponse(response, username, password);
         }catch (IOException ioException){
             ioException.printStackTrace();
         }
 
     }
-    public void handleSIgnUpReq(String username, String password){
+    public static void handleSIgnUpReq(String username, String password){
         try{
             send.writeUTF("signup:" + username + ":" + password);
         }catch (IOException ioException){
