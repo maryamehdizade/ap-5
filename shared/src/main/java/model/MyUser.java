@@ -6,7 +6,6 @@ public class MyUser {
     private String username;
     private String password;
     private ArrayList<MyFile> files;
-    public static MyUser currentUser;
 
     public MyUser() {
     }
