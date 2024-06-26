@@ -2,6 +2,7 @@ package server;
 
 
 
+import data.Data;
 import responseHandler.LoginResponse;
 import responseHandler.SignUpResponse;
 
@@ -23,8 +24,11 @@ public class server {
         Socket socket;
         while (true){
             try{
+
                 socket = serverSocket.accept();
                 connect(socket);
+                System.out.println("server is running....");
+                new Data();
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -40,8 +44,14 @@ public class server {
             massage = receive.readUTF();
             String[] data = massage.split(":");
             switch (data[0]){
-                case "login" -> send.writeUTF(new LoginResponse(data).getResponse());
-                case "signup" -> send.writeUTF(new SignUpResponse().getResponse());
+                case "login" -> {
+                    send.writeUTF(new LoginResponse(data).getResponse());
+                    System.out.println("login");
+                }
+                case "signup" -> {
+                    send.writeUTF(new SignUpResponse().getResponse());
+                    System.out.println("signup");
+                }
             }
             send.close();
 

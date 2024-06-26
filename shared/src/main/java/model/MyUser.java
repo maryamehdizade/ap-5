@@ -6,6 +6,7 @@ public class MyUser {
     private String username;
     private String password;
     private ArrayList<MyFile> files;
+    public static MyUser currentUser;
 
     public MyUser() {
     }
@@ -14,6 +15,8 @@ public class MyUser {
         this.username = username;
         this.password = password;
     }
+
+    
 
     public String getUsername() {
         return username;

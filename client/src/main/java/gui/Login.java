@@ -30,7 +30,13 @@ public class Login {
             RequestHandler.establishConnection("127.0.0.1", 1234);
             RequestHandler.handleLoginReq(this.username, this.password);
         });
+        jPanel.add(username);
+        jPanel.add(passworld);
+        jPanel.add(login);
 
 
+
+        jFrame.add(jPanel);
+        jFrame.setVisible(true);
     }
 }

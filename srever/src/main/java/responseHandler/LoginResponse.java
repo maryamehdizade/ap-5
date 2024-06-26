@@ -3,6 +3,7 @@ package responseHandler;
 import data.Data;
 import model.MyUser;
 
+
 public class LoginResponse extends Response{
 
     public LoginResponse(String[] data){
@@ -15,6 +16,7 @@ public class LoginResponse extends Response{
                 if(data[1].equals(u.getUsername())){
                     if(data[2].equals(u.getPassword())){
                         response = "access granted";
+
                         done = true;
                         break;
                     }else {

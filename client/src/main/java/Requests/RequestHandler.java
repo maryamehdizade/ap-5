@@ -23,6 +23,8 @@ public class RequestHandler {
     public static void handleLoginReq(String username, String password){
         try{
             send.writeUTF("login:" + username + ":" + password);
+            String response = recieve.readUTF();
+
         }catch (IOException ioException){
             ioException.printStackTrace();
         }
