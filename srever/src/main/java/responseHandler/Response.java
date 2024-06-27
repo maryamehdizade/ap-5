@@ -2,6 +2,8 @@ package responseHandler;
 
 import data.Data;
 import model.MyUser;
+import util.Hasher;
+
 import static util.Util.createNewUser;
 
 public class Response {
@@ -15,7 +17,7 @@ public class Response {
             for (MyUser u :
                     new Data().getUsers()) {
                 if(data[1].equals(u.getUsername())){
-                    if(data[2].equals(u.getPassword())){
+                    if(data[2].equals(Hasher.hashPassword(u.getPassword()))){
                         response = "access granted";
 
                         done = true;
