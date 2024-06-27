@@ -1,7 +1,7 @@
 package responses;
 
 
-import model.MyUser;
+
 
 public class handleResponse {
     public static void handleLoginResponse(String response, String username, String password){

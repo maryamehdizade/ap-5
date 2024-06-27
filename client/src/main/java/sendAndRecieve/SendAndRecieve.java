@@ -1,8 +1,13 @@
 package sendAndRecieve;
 
+import threads.FileSender;
+
 import java.io.File;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+import static costant.Constant.PORT;
 
 public class SendAndRecieve {
     private DatagramSocket socket;
@@ -19,6 +24,11 @@ public class SendAndRecieve {
         }
     }
     public void send(File file){
-
+        try {
+            FileSender fileSender = new FileSender(file);
+            fileSender.sendPartFiles(InetAddress.getByName(address), socket, PORT);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

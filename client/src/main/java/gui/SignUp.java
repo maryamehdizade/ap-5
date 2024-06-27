@@ -31,6 +31,7 @@ public class SignUp {
         login.addActionListener(e -> {
             RequestHandler.establishConnection("127.0.0.1", PORT);
             RequestHandler.handleSIgnUpReq(this.username, this.password);
+            RequestHandler.end();
         });
         jPanel.add(username);
         jPanel.add(passworld);

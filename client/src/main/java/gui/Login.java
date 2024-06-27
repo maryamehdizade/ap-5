@@ -32,6 +32,7 @@ public class Login {
         login.addActionListener(e -> {
             RequestHandler.establishConnection("127.0.0.1", PORT);
             RequestHandler.handleLoginReq(this.username, this.password);
+            RequestHandler.end();
         });
         jPanel.add(username);
         jPanel.add(passworld);

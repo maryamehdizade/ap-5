@@ -39,4 +39,13 @@ public class RequestHandler {
             ioException.printStackTrace();
         }
     }
+    public static void end(){
+        try{
+            socket.close();
+            recieve.close();
+            send.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
