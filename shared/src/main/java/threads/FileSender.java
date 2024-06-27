@@ -21,8 +21,7 @@ public class FileSender extends Thread {
    int bytesRead;
    byte[] buffer = new byte[PART_SIZE];
    while ((bytesRead = fileInputStream.read(buffer)) != -1) {
-    SendThread sendThread = new SendThread(socket, address, port, buffer, bytesRead, partNum);
-    sendThread.start();
+    send(socket, address, port, buffer, bytesRead, partNum);
     Thread.sleep(5);
 
     partNum++;
@@ -36,5 +35,14 @@ public class FileSender extends Thread {
    e.printStackTrace();
   }
   socket.close();
+ }
+ private void send(DatagramSocket socket, InetAddress address, int port,byte[] data , int length, int partName){
+  try{
+   DatagramPacket packet = new DatagramPacket(data, length, address,port);
+   socket.send(packet);
+
+  }catch (Exception i){
+   i.printStackTrace();
+  }
  }
 }
