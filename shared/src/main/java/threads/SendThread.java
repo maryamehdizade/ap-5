@@ -12,8 +12,9 @@ public class SendThread extends Thread{
     private byte[] data;
     private int partName;
 
-    public SendThread(DatagramSocket socket, InetAddress address, int port, int length, int partName) {
+    public SendThread(DatagramSocket socket, InetAddress address, int port,byte[] data , int length, int partName) {
         this.socket = socket;
+        this. data = data;
         this.address = address;
         this.port = port;
         this.length = length;
