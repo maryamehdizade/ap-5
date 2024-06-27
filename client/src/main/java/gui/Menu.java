@@ -22,6 +22,7 @@ public class Menu {
 
         JButton upload = new JButton("upload");
         JButton dow = new JButton("download");
+        JButton chooseFile = new JButton("choose file");
 
         JScrollPane scrollPane = new JScrollPane(jPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -31,13 +32,17 @@ public class Menu {
         jFrame.add(scrollPane);
         jFrame.setVisible(true);
 
-        upload.addActionListener(e->{
+        chooseFile.addActionListener(e->{
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("choose file to send");
 
             if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
                 fileToUpload[0] = fileChooser.getSelectedFile();
             }
+        });
+
+        dow.addActionListener(e->{
+
         });
     }
 }
