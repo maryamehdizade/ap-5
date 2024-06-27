@@ -3,7 +3,7 @@ package util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.concurrent.ThreadPoolExecutor;
+
 
 import static costant.Constant.PART_SIZE;
 
@@ -12,7 +12,7 @@ public class Splitter {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             byte[] buffer = new byte[PART_SIZE];
-            int bytesRead = 0;
+            int bytesRead;
             int partNumber = 0;
             while ((bytesRead = fileInputStream.read(buffer)) != -1) {
                 String partName = file.getName() + "Part" + partNumber;
@@ -21,6 +21,7 @@ public class Splitter {
                 fileOutputStream.close();
 
                 //sendFile
+
 
                 partNumber++;
 

@@ -1,11 +1,12 @@
 package model;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MyUser {
     private String username;
     private String password;
-    private ArrayList<MyFile> files;
+    private ArrayList<File> files;
 
     public MyUser() {
     }
@@ -33,11 +34,11 @@ public class MyUser {
         this.password = password;
     }
 
-    public ArrayList<MyFile> getFiles() {
+    public ArrayList<File> getFiles() {
         return files;
     }
 
-    public void setFiles(ArrayList<MyFile> files) {
+    public void setFiles(ArrayList<File> files) {
         this.files = files;
     }
 }

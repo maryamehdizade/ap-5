@@ -2,6 +2,7 @@ package data;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import model.MyUser;
 
 import java.io.File;
@@ -20,6 +21,31 @@ public class Data {
     public void addUser(MyUser user){
         users.add(user);
         serialize();
+    }
+    public void userFiles(MyUser user) {
+        for (MyUser u : users) {
+            if (u.getUsername().equals(user.getUsername())) {
+                user.setFiles(u.getFiles());
+                break;
+            }
+        }
+
+    }
+    public void addFile(MyUser user, File file){
+        for (MyUser u: users) {
+            if (u.getUsername().equals(user.getUsername())){
+                u.getFiles().add(file);
+                //todo:chage this
+                serialize();
+            }
+        }
+    }
+    public void serializeFile(MyUser user){
+        for (MyUser u: users) {
+            if (u.getUsername().equals(user.getUsername())) {
+
+            }
+        }
     }
     private void serialize(){
         try {
