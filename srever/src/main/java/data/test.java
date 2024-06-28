@@ -2,10 +2,13 @@ package data;
 
 import model.MyUser;
 
+import java.io.File;
+
 public class test {
     public static void main(String[] args) {
-       Data data =  new Data();
-       data.addUser(new MyUser("dfghi gbuikgb", "123423456"));
-        System.out.println(data.getUsers());
+        File file = new File("server/src/doc");
+        file.mkdir();
+        System.out.println(file.exists());
+        System.out.println(file.listFiles());
     }
 }

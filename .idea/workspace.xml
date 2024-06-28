@@ -5,16 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2655f15-6c86-4153-b0de-7aae9bdf9e74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/gui/Start.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/Requests/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/Requests/RequestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/gui/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/gui/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/gui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/gui/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/gui/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/gui/SignUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/gui/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/gui/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/sendAndRecieve/SendAndRecieve.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/sendAndRecieve/SendAndRecieve.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srever/src/main/java/data/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/srever/src/main/java/data/user.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/20210929_164804.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/20211121_121224.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/20211121_121315.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/Dancing With Your Ghost (Sofia-Cover) .mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/Dean-Lewis-Be-Alright-128.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/Doc 10-14-2021 16-10-44.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/Doc 10-14-2021 16-12-00.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/Doc 10-14-2021 16-13-01.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/Doc 10-14-2021 16-37-07.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/diplom.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/meli.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/doc/zahra.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srever/src/main/java/data/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/srever/src/main/java/data/test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srever/src/main/java/responseHandler/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/srever/src/main/java/responseHandler/Response.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srever/src/main/java/server/server.java" beforeDir="false" afterPath="$PROJECT_DIR$/srever/src/main/java/server/server.java" afterDir="false" />
     </list>
@@ -63,7 +68,7 @@
       <recent name="model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.test">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="srever" />
@@ -91,11 +96,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.test" />
+      <module name="srever" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.test" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -109,5 +128,16 @@
       <updated>1719309151055</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/srever/src/main/java/responseHandler/Response.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

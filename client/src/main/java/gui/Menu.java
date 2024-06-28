@@ -98,15 +98,31 @@ public class Menu {
         RequestHandler.establishConnection("127.0.0.1", PORT);
         String[] fileNames = RequestHandler.handledowFiles().split("/");
         JFrame filesForDow = new JFrame();
-        jFrame.setLayout(new BoxLayout(jFrame.getContentPane(), BoxLayout.Y_AXIS));
+        filesForDow.setLayout(new BoxLayout(filesForDow.getContentPane(), BoxLayout.Y_AXIS));
 
         for (int i = 0; i < fileNames.length; i++) {
             JLabel button = new JLabel(fileNames[i]);
             filesForDow.add(button);
         }
+        JButton back = new JButton("back");
+        back.addActionListener(e -> {
+            filesForDow.dispose();
+            new Start();
+        });
+
         JTextField field = new JTextField("enter the name of the file you want to download");
-        String toDow = field.getText();
-        if(toDow != null)filesForDow.dispose();
+
+        String[] toDow = new String[1];
+
+        JButton dow = new JButton("download");
+        dow.addActionListener(e -> {
+             toDow[0] = field.getText();
+        });
+        filesForDow.add(field);
+        filesForDow.add(back);
+        filesForDow.setVisible(true);
+
+        if(toDow[0] != null)filesForDow.dispose();
         return field.getText();
     }
 

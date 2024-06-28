@@ -45,14 +45,15 @@ public class server {
             switch (data[0]){
                 case "login" -> {
                     send.writeUTF(Response.LoginResponse(data));
-                    System.out.println("login");
                 }
                 case "signup" -> {
                     send.writeUTF(Response.signUpResponse(data));
-                    System.out.println("signup");
                 }
                 case "download" -> {
                     Response.downloadResponse(data[1]);
+                }
+                case "fileToDow" ->{
+                    send.writeUTF(Response.fileToDow());
                 }
             }
             send.close();
