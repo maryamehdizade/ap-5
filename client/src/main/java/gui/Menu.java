@@ -1,5 +1,6 @@
 package gui;
 
+import Requests.RequestHandler;
 import model.MyUser;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.io.File;
 
 import static costant.Constant.FRAME_SIZE;
+import static costant.Constant.PORT;
 
 public class Menu {
     final File[] fileToUpload = new File[1];
@@ -65,7 +67,8 @@ public class Menu {
         });
 
         dow.addActionListener(e -> {
-
+            RequestHandler.establishConnection("127.0.0.1", PORT);
+            RequestHandler.handleDowReq(fileToUpload[0].getName());
         });
     }
 

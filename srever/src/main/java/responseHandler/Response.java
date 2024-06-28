@@ -19,7 +19,9 @@ public class Response {
                 if(data[1].equals(u.getUsername())){
                     if(data[2].equals(Hasher.hashPassword(u.getPassword()))){
                         response = "access granted";
-
+                        MyUser.setINSTANCE(u);
+                        //todo
+                        MyUser.getINSTANCE().setFiles(u.getFiles());
                         done = true;
                         break;
                     }else {
@@ -44,8 +46,9 @@ public class Response {
             }
         }if(!done){
             response = "welcome";
-            createNewUser(data[1], data[2]);
+            MyUser.setINSTANCE(createNewUser(data[1], data[2]));
         }
         return response;
     }
+
 }

@@ -42,6 +42,14 @@ public class RequestHandler {
         }
         return false;
     }
+    public static void handleDowReq(String fileName){
+        try{
+            send.writeUTF("download:" +fileName);
+        }catch (IOException ioException){
+            ioException.printStackTrace();
+        }
+    }
+
     public static void end(){
         try{
             socket.close();
