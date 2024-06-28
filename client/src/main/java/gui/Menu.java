@@ -1,20 +1,22 @@
 package gui;
 
+import model.MyUser;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import java.awt.*;
 import java.io.File;
 
 import static costant.Constant.FRAME_SIZE;
 
-public class Menu {
+public class Menu{
     final  File[] fileToUpload = new File[1];
 
-    public Menu(){
-        //todo:add user name
-        JFrame jFrame = new JFrame();
-        jFrame.setSize(FRAME_SIZE, FRAME_SIZE);
-        jFrame.setLayout(new BoxLayout(jFrame.getContentPane(), BoxLayout.Y_AXIS));
+    public Menu(MyUser user){
+        JFrame jFrame = new JFrame(user.getUsername());
+         jFrame.setSize(FRAME_SIZE, FRAME_SIZE);
+        jFrame.setLayout(new BoxLayout( jFrame.getContentPane(), BoxLayout.Y_AXIS));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel jPanel = new JPanel();
@@ -27,8 +29,29 @@ public class Menu {
         JScrollPane scrollPane = new JScrollPane(jPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
+        JPanel fileRow = new JPanel();
+        fileRow.setLayout(new BoxLayout(fileRow, BoxLayout.Y_AXIS));
+
+        for (File f : user.getFiles()) {
+            JLabel fileName = new JLabel(f.getName());
+            fileName.setFont(new Font("Ariel", Font.BOLD, 20));
+            fileName.setBorder(new EmptyBorder(10, 0, 10, 0));
+
+            fileRow.add(fileName);
+
+        }
+        //todo
+        new Timer(1000, e -> {
+            jFrame.revalidate();
+        }).start();
+
+
+        jPanel.add(fileRow);
+
+
         jFrame.add(upload);
         jFrame.add(dow);
+        jFrame.add(chooseFile);
         jFrame.add(scrollPane);
         jFrame.setVisible(true);
 
@@ -45,4 +68,5 @@ public class Menu {
 
         });
     }
+
 }

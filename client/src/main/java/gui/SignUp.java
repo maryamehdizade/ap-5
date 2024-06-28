@@ -32,7 +32,7 @@ public class SignUp {
             RequestHandler.establishConnection("127.0.0.1", PORT);
             if(RequestHandler.handleSIgnUpReq(this.username, this.password)){
                 jFrame.dispose();
-                new Menu();
+//                new Menu();
             }
             RequestHandler.end();
         });

@@ -33,7 +33,7 @@ public class Login {
             RequestHandler.establishConnection("127.0.0.1", PORT);
             if(RequestHandler.handleLoginReq(this.username, this.password)){
                 jFrame.dispose();
-                new Menu();
+//                new Menu();
             }
             RequestHandler.end();
         });

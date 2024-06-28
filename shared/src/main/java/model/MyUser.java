@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class MyUser {
     private String username;
     private String password;
-    private ArrayList<File> files;
+    private ArrayList<File> files = new ArrayList<>();
 
     public MyUser() {
     }
