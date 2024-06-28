@@ -24,6 +24,7 @@ public class RequestHandler {
         try{
             send.writeUTF("login:" + username + ":" + password);
             String response = receive.readUTF();
+            System.out.println(response);
             return response.startsWith("access granted");
         }catch (IOException ioException){
             ioException.printStackTrace();
@@ -49,11 +50,21 @@ public class RequestHandler {
             ioException.printStackTrace();
         }
     }
-    public static void handledowFiles(){
+    public static void handleUploadReq(String fileName){
         try{
-            send.writeUTF("fileToDow");
+            send.writeUTF("upload:" +fileName);
         }catch (IOException ioException){
             ioException.printStackTrace();
+        }
+    }
+    public static String handledowFiles(){
+        try{
+            send.writeUTF("fileToDow");
+           String fileNames =  receive.readUTF();
+           return fileNames;
+        }catch (IOException ioException){
+            ioException.printStackTrace();
+            return null;
         }
     }
 

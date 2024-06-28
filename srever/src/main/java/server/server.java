@@ -26,7 +26,7 @@ public class server {
 
                 socket = serverSocket.accept();
                 connect(socket);
-                System.out.println("server is running....");
+
                 new Data();
             }catch (Exception e){
                 e.printStackTrace();

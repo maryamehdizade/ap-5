@@ -1,6 +1,7 @@
 package gui;
 
 import Requests.RequestHandler;
+import model.MyUser;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -22,23 +23,32 @@ public class SignUp {
         jPanel.setBorder(new EmptyBorder(75, 0 ,10, 0));
 
         JTextField username = new JTextField("enter username");
-        this.username = username.getText();
+
 
         JTextField passworld = new JTextField("enter passworld");
-        this.password = passworld.getText();
+
 
         JButton login = new JButton("Sign up");
         login.addActionListener(e -> {
+            this.username = username.getText();
+            this.password = passworld.getText();
             RequestHandler.establishConnection("127.0.0.1", PORT);
             if(RequestHandler.handleSIgnUpReq(this.username, this.password)){
                 jFrame.dispose();
-//                new Menu();
+                new Menu();
             }
             RequestHandler.end();
         });
+        JButton back = new JButton("back");
+        back.addActionListener(e -> {
+            jFrame.dispose();
+            new Start();
+        });
+
         jPanel.add(username);
         jPanel.add(passworld);
         jPanel.add(login);
+        jPanel.add(back);
 
 
 

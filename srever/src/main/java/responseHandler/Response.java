@@ -10,6 +10,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Objects;
 
 import static costant.Constant.PORT;
 import static util.Util.createNewUser;
@@ -26,7 +27,8 @@ public class Response {
             for (MyUser u :
                     new Data().getUsers()) {
                 if(data[1].equals(u.getUsername())){
-                    if(data[2].equals(Hasher.hashPassword(u.getPassword()))){
+                    System.out.println(u.getPassword());
+                    if(Hasher.hashPassword(data[2]).equals(u.getPassword())){
                         response = "access granted";
                         MyUser.setINSTANCE(u);
                         //todo
