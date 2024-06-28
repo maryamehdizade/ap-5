@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class MyUser {
+    private static MyUser INSTANCE;
     private String username;
     private String password;
     private ArrayList<File> files = new ArrayList<>();
@@ -15,9 +16,6 @@ public class MyUser {
         this.username = username;
         this.password = password;
     }
-
-    
-
     public String getUsername() {
         return username;
     }
@@ -40,5 +38,14 @@ public class MyUser {
 
     public void setFiles(ArrayList<File> files) {
         this.files = files;
+    }
+
+    public static MyUser getINSTANCE() {
+        if(INSTANCE == null)INSTANCE = new MyUser();
+        return INSTANCE;
+    }
+
+    public static void setINSTANCE(MyUser INSTANCE) {
+        MyUser.INSTANCE = INSTANCE;
     }
 }
