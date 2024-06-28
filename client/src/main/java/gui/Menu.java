@@ -36,7 +36,11 @@ public class Menu {
         JButton chooseFile = new JButton("choose file to upload");
 
         JButton uploadedFiles = new JButton("uploaded files");
-        uploadedFiles.addActionListener(e -> RequestHandler.handleUploadedFiles());
+        uploadedFiles.addActionListener(e -> {
+            String response = RequestHandler.handleUploadedFiles();
+            assert response != null;
+            showUploadedFiles(response);
+        });
 
 
         jFrame.add(upload);
@@ -81,7 +85,7 @@ public class Menu {
             }
         });
     }
-    private void showUploadedFiles(){
+    private void showUploadedFiles(String response){
         JFrame frame = new JFrame();
         frame.setSize(300,300);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
@@ -95,8 +99,10 @@ public class Menu {
         fileRow = new JPanel();
         fileRow.setLayout(new BoxLayout(fileRow, BoxLayout.Y_AXIS));
 
-        for (File f : MyUser.getINSTANCE().getFiles()) {
-            JLabel fileName = new JLabel(f.getName());
+        String[] files = response.split("/");
+
+        for (String s : files) {
+            JLabel fileName = new JLabel(s);
             fileName.setFont(new Font("Ariel", Font.BOLD, 20));
             fileName.setBorder(new EmptyBorder(10, 0, 10, 0));
 
