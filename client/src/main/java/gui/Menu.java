@@ -10,26 +10,30 @@ import java.io.File;
 
 import static costant.Constant.FRAME_SIZE;
 
-public class Menu{
-    final  File[] fileToUpload = new File[1];
+public class Menu {
+    final File[] fileToUpload = new File[1];
+    JScrollPane scrollPane;
+    JPanel fileRow;
+    JPanel jPanel;
+    JFrame jFrame;
 
-    public Menu(MyUser user){
-        JFrame jFrame = new JFrame(user.getUsername());
-         jFrame.setSize(FRAME_SIZE, FRAME_SIZE);
-        jFrame.setLayout(new BoxLayout( jFrame.getContentPane(), BoxLayout.Y_AXIS));
+    public Menu(MyUser user) {
+        jFrame = new JFrame(user.getUsername());
+        jFrame.setSize(FRAME_SIZE, FRAME_SIZE);
+        jFrame.setLayout(new BoxLayout(jFrame.getContentPane(), BoxLayout.Y_AXIS));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel jPanel = new JPanel();
+        jPanel = new JPanel();
         jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
 
         JButton upload = new JButton("upload");
         JButton dow = new JButton("download");
         JButton chooseFile = new JButton("choose file");
 
-        JScrollPane scrollPane = new JScrollPane(jPanel);
+        scrollPane = new JScrollPane(jPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        JPanel fileRow = new JPanel();
+        fileRow = new JPanel();
         fileRow.setLayout(new BoxLayout(fileRow, BoxLayout.Y_AXIS));
 
         for (File f : user.getFiles()) {
@@ -38,16 +42,12 @@ public class Menu{
             fileName.setBorder(new EmptyBorder(10, 0, 10, 0));
 
             fileRow.add(fileName);
-
         }
-        //todo
-        new Timer(1000, e -> {
-            jFrame.revalidate();
-        }).start();
+//        new Timer(1000, e ->addFiles(fileRow, user)).start();
+//        addFiles( user);
 
 
         jPanel.add(fileRow);
-
 
         jFrame.add(upload);
         jFrame.add(dow);
@@ -55,18 +55,35 @@ public class Menu{
         jFrame.add(scrollPane);
         jFrame.setVisible(true);
 
-        chooseFile.addActionListener(e->{
+        chooseFile.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("choose file to send");
 
-            if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+            if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 fileToUpload[0] = fileChooser.getSelectedFile();
             }
         });
 
-        dow.addActionListener(e->{
+        dow.addActionListener(e -> {
 
         });
+    }
+
+    public void addFiles(MyUser user) {
+        fileRow = new JPanel();
+        fileRow.setLayout(new BoxLayout(fileRow, BoxLayout.Y_AXIS));
+//        for (File f : user.getFiles()) {
+//            JLabel fileName = new JLabel(f.getName());
+//            fileName.setFont(new Font("Ariel", Font.BOLD, 20));
+//            fileName.setBorder(new EmptyBorder(10, 0, 10, 0));
+//
+//            fileRow.add(fileName);
+//        }
+
+        jPanel.add(fileRow);
+
+
+
     }
 
 }

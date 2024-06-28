@@ -2,6 +2,7 @@ package gui;
 
 import model.MyUser;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ public class Test {
     public static void main(String[] args) {
         MyUser u = new MyUser();
         u.getFiles().add(new File("src/main/java/gui/testing.txt"));
+        u.getFiles().add(new File("src/main/java/gui/testing2.txt"));
         Menu menu = new Menu(u);
         String file = new Scanner(System.in).next();
         u.getFiles().add(new File("src/main/java/gui/" + file + ".txt"));
