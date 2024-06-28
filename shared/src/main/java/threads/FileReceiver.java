@@ -14,6 +14,7 @@ public class FileReceiver extends Thread{
     private byte[] data;
     private int size;
     private String fileName;
+    public String path ;
     private final DatagramSocket socket;
 
     public FileReceiver(DatagramSocket socket){
@@ -46,7 +47,7 @@ public class FileReceiver extends Thread{
 
     public void receiveFile() {
         try{
-            String filePath = "srever/src/main/java/data/userFiles";
+            String filePath = path + "/src/main/java/data/userFiles";
             File fileToReceive = new File(filePath + "/" + MyUser.getINSTANCE().getUsername());
             if(!fileToReceive.isDirectory() || !fileToReceive.exists())fileToReceive.mkdir();
             try (FileOutputStream fileOutputStream = new FileOutputStream(fileToReceive.getPath() + "/" + fileName, true)) {

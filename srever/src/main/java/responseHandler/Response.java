@@ -61,8 +61,11 @@ public class Response {
     }
     public static void downloadResponse(String fileName) {
         try {
-            FileSender fileSender = new FileSender(getFile(fileName));
-            fileSender.sendPartFiles(InetAddress.getByAddress("localhost".getBytes()), new DatagramSocket(), PORT);
+            File file = getFile(fileName);
+            if(file != null) {
+                FileSender fileSender = new FileSender(file);
+                fileSender.sendPartFiles(InetAddress.getByAddress("localhost".getBytes()), new DatagramSocket(), PORT);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }

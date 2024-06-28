@@ -2,6 +2,7 @@ package gui;
 
 import Requests.RequestHandler;
 import model.MyUser;
+import sendAndRecieve.SendAndRecieve;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -67,6 +68,12 @@ public class Menu {
             RequestHandler.establishConnection("127.0.0.1", PORT);
             RequestHandler.handleDowReq(fileToUpload[0].getName());
             RequestHandler.end();
+            SendAndRecieve recieve = new SendAndRecieve();
+            recieve.fileReceiver.path = "client";
+            recieve.establishConnection("127.0.0.1", PORT);
+            recieve.receive();
+        });
+        upload.addActionListener(e -> {
         });
     }
 

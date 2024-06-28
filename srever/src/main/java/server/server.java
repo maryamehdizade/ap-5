@@ -52,7 +52,7 @@ public class server {
                     System.out.println("signup");
                 }
                 case "download" -> {
-
+                    Response.downloadResponse(data[1]);
                 }
             }
             send.close();
