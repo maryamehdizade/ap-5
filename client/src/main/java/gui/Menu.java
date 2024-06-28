@@ -58,17 +58,15 @@ public class Menu {
         jFrame.setVisible(true);
 
         chooseFile.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("choose file to send");
-
-            if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                fileToUpload[0] = fileChooser.getSelectedFile();
-            }
+            RequestHandler.establishConnection("127.0.0.1", PORT);
+            RequestHandler.handledowFiles();
+            RequestHandler.end();
         });
 
         dow.addActionListener(e -> {
             RequestHandler.establishConnection("127.0.0.1", PORT);
             RequestHandler.handleDowReq(fileToUpload[0].getName());
+            RequestHandler.end();
         });
     }
 

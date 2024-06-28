@@ -2,9 +2,18 @@ package responseHandler;
 
 import data.Data;
 import model.MyUser;
+import threads.FileSender;
 import util.Hasher;
 
+import java.io.File;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import static costant.Constant.PORT;
 import static util.Util.createNewUser;
+import static util.Util.getFile;
 
 public class Response {
     static String response;
@@ -49,6 +58,14 @@ public class Response {
             MyUser.setINSTANCE(createNewUser(data[1], data[2]));
         }
         return response;
+    }
+    public static void downloadResponse(String fileName) {
+        try {
+            FileSender fileSender = new FileSender(getFile(fileName));
+            fileSender.sendPartFiles(InetAddress.getByAddress("localhost".getBytes()), new DatagramSocket(), PORT);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

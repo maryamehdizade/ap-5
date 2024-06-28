@@ -49,6 +49,13 @@ public class RequestHandler {
             ioException.printStackTrace();
         }
     }
+    public static void handledowFiles(){
+        try{
+            send.writeUTF("fileToDow");
+        }catch (IOException ioException){
+            ioException.printStackTrace();
+        }
+    }
 
     public static void end(){
         try{

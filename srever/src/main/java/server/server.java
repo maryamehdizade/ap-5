@@ -51,6 +51,9 @@ public class server {
                     send.writeUTF(Response.signUpResponse(data));
                     System.out.println("signup");
                 }
+                case "download" -> {
+
+                }
             }
             send.close();
 
