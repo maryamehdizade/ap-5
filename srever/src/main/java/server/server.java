@@ -55,6 +55,12 @@ public class server {
                 case "fileToDow" ->{
                     send.writeUTF(Response.fileToDow());
                 }
+                case "upload" -> {
+                    Response.uploadResponse(data[1]);
+                }
+                case "uploadedFiles" -> {
+                    send.writeUTF(Response.uploadedFile());
+                }
             }
             send.close();
 

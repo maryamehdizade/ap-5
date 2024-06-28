@@ -50,6 +50,13 @@ public class RequestHandler {
             ioException.printStackTrace();
         }
     }
+    public static void handleUploadedFiles(){
+        try{
+            send.writeUTF("uploadedFiles");
+        }catch (IOException ioException){
+            ioException.printStackTrace();
+        }
+    }
     public static void handleUploadReq(String fileName){
         try{
             send.writeUTF("upload:" +fileName);

@@ -10,6 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Data {
+private static Data INSTANCE;
+
+    public static Data getINSTANCE() {
+        if(INSTANCE == null)INSTANCE = new Data();
+        return INSTANCE;
+    }
+
     private ObjectMapper objectMapper = new ObjectMapper();
     private File file = new File("srever/src/main/java/data/user.json");
 
@@ -22,14 +29,15 @@ public class Data {
         users.add(user);
         serialize();
     }
-    public void userFiles(MyUser user) {
-        for (MyUser u : users) {
-            if (u.getUsername().equals(user.getUsername())) {
-                user.setFiles(u.getFiles());
-                break;
-            }
+    public static String userFiles() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (File u : MyUser.getINSTANCE().getFiles()) {
+           stringBuilder.append(u.getName());
+           if(u.equals(MyUser.getINSTANCE().getFiles().get(MyUser.getINSTANCE().getFiles().size() - 1)))break;
+           stringBuilder.append("/");
         }
 
+        return stringBuilder.toString();
     }
     public void addFile(MyUser user, File file){
         for (MyUser u: users) {

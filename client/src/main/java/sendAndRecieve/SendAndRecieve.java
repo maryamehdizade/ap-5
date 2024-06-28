@@ -9,6 +9,7 @@ import java.net.InetAddress;
 
 
 public class SendAndRecieve {
+    public boolean done;
     private DatagramSocket socket;
     private int port;
     private String address;
@@ -28,6 +29,7 @@ public class SendAndRecieve {
         try {
             fileSender = new FileSender(file);
             fileSender.sendPartFiles(InetAddress.getByName(address), socket, port);
+            done = true;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -36,6 +38,7 @@ public class SendAndRecieve {
         try{
             fileReceiver = new FileReceiver(socket);
             fileReceiver.start();
+            done = true;
         }catch (Exception u){
             u.printStackTrace();
         }

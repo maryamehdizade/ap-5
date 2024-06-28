@@ -30,6 +30,7 @@ public class FileSender extends Thread {
 
    DatagramPacket end = new DatagramPacket("end".getBytes(), 3, address, port);
    socket.send(end);
+   System.out.println("done");
 
   } catch (Exception e) {
    e.printStackTrace();

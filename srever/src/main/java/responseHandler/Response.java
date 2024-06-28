@@ -2,16 +2,19 @@ package responseHandler;
 
 import data.Data;
 import model.MyUser;
+import threads.FileReceiver;
 import threads.FileSender;
 import util.Hasher;
 
 import java.io.File;
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static costant.Constant.PART_SIZE;
 import static costant.Constant.PORT;
 import static util.Util.createNewUser;
 import static util.Util.getFile;
@@ -25,7 +28,7 @@ public class Response {
             done = true;
         }if(!done){
             for (MyUser u :
-                    new Data().getUsers()) {
+                    Data.getINSTANCE().getUsers()) {
                 if(data[1].equals(u.getUsername())){
                     if(Hasher.hashPassword(data[2]).equals(u.getPassword())){
                         response = "access granted";
@@ -44,9 +47,12 @@ public class Response {
         done = false;
         return response;
     }
+    public static String uploadedFile(){
+        return Data.userFiles();
+    }
     public static String signUpResponse(String[] data){
         for (MyUser u :
-                new Data().getUsers()) {
+                Data.getINSTANCE().getUsers()) {
             if(data[1].equals(u.getUsername())){
                 response = "this username is taken";
                 done = true;
@@ -59,7 +65,7 @@ public class Response {
         return response;
     }
     public static String fileToDow(){
-        File file = new File("src/doc");
+        File file = new File("C:\\Users\\EPSILON\\IdeaProjects\\tamrin5\\srever\\src\\doc");
         File[] files = file.listFiles();
         response = "";
         for (int i = 0; i < Objects.requireNonNull(files).length; i++) {
@@ -76,6 +82,16 @@ public class Response {
                 FileSender fileSender = new FileSender(file);
                 fileSender.sendPartFiles(InetAddress.getByAddress("localhost".getBytes()), new DatagramSocket(), PORT);
             }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public static void uploadResponse(String fileName){
+        try{
+          FileReceiver fileReceiver = new FileReceiver(new DatagramSocket(PORT));
+          fileReceiver.path = "server";
+          fileReceiver.fileName = fileName;
+          fileReceiver.start();
         }catch (Exception e){
             e.printStackTrace();
         }

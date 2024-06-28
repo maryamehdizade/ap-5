@@ -13,7 +13,7 @@ import static costant.Constant.PART_SIZE;
 public class FileReceiver extends Thread{
     private byte[] data;
     private int size;
-    private String fileName;
+    public String fileName;
     public String path ;
     private final DatagramSocket socket;
 
@@ -34,6 +34,7 @@ public class FileReceiver extends Thread{
 
                 if(Arrays.equals(data, "end".getBytes())){
                     socket.close();
+                    System.out.println("recieved succesfuly");
                     break;
                 }
 

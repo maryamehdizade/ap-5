@@ -8,7 +8,7 @@ import java.io.File;
 public class Util {
     public static MyUser createNewUser(String u, String p){
         MyUser newUser = new MyUser(u, Hasher.hashPassword(p));
-        new Data().addUser(newUser);
+        Data.getINSTANCE().addUser(newUser);
         return newUser;
     }
     public static File getFile(String fileName){
