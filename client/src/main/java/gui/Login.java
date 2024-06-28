@@ -31,7 +31,10 @@ public class Login {
         JButton login = new JButton("Log in");
         login.addActionListener(e -> {
             RequestHandler.establishConnection("127.0.0.1", PORT);
-            RequestHandler.handleLoginReq(this.username, this.password);
+            if(RequestHandler.handleLoginReq(this.username, this.password)){
+                jFrame.dispose();
+                new Menu();
+            }
             RequestHandler.end();
         });
         jPanel.add(username);

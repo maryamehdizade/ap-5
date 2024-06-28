@@ -1,14 +1,19 @@
 package util;
 
+import threads.FileSender;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 
 import static costant.Constant.PART_SIZE;
 
 public class Splitter {
-    public static void splitFile(File file){
+    public static void splitAndSendFile(File file){
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             byte[] buffer = new byte[PART_SIZE];
@@ -26,6 +31,15 @@ public class Splitter {
                 partNumber++;
 
             }
+        }catch (Exception i){
+            i.printStackTrace();
+        }
+    }
+    private void send(DatagramSocket socket, InetAddress address, int port, byte[] data , int length, int partName){
+        try{
+            DatagramPacket packet = new DatagramPacket(data, length, address,port);
+            socket.send(packet);
+
         }catch (Exception i){
             i.printStackTrace();
         }

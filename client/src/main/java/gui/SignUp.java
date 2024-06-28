@@ -30,7 +30,10 @@ public class SignUp {
         JButton login = new JButton("Sign up");
         login.addActionListener(e -> {
             RequestHandler.establishConnection("127.0.0.1", PORT);
-            RequestHandler.handleSIgnUpReq(this.username, this.password);
+            if(RequestHandler.handleSIgnUpReq(this.username, this.password)){
+                jFrame.dispose();
+                new Menu();
+            }
             RequestHandler.end();
         });
         jPanel.add(username);

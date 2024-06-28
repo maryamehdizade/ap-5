@@ -22,22 +22,27 @@ public class RequestHandler {
         }
     }
 
-    public static void handleLoginReq(String username, String password){
+    public static boolean handleLoginReq(String username, String password){
         try{
             send.writeUTF("login:" + username + ":" + password);
             String response = recieve.readUTF();
-            handleResponse.handleLoginResponse(response, username, password);
+            return handleResponse.handleLoginResponse(response, username, password);
         }catch (IOException ioException){
             ioException.printStackTrace();
         }
 
+        return false;
     }
-    public static void handleSIgnUpReq(String username, String password){
+    public static boolean handleSIgnUpReq(String username, String password){
         try{
             send.writeUTF("signup:" + username + ":" + password);
+            String response = recieve.readUTF();
+            return handleResponse.handleSignUpResponse(response, username, password);
+
         }catch (IOException ioException){
             ioException.printStackTrace();
         }
+        return false;
     }
     public static void end(){
         try{
