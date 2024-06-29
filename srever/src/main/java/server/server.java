@@ -3,6 +3,7 @@ package server;
 
 
 import data.Data;
+import model.MyUser;
 import responseHandler.Response;
 
 import java.io.DataInputStream;
@@ -23,7 +24,6 @@ public class server {
         Socket socket;
         while (true){
             try{
-
                 socket = serverSocket.accept();
                 connect(socket);
 
@@ -61,6 +61,7 @@ public class server {
                 case "uploadedFiles" -> {
                     send.writeUTF(Response.uploadedFile());
                 }
+                case  "name"-> send.writeUTF(MyUser.getINSTANCE().getUsername());
             }
             send.close();
 

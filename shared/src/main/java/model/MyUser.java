@@ -3,7 +3,7 @@ package model;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MyUser {
+public final class MyUser {
     private static MyUser INSTANCE;
     private String username;
     private String password;

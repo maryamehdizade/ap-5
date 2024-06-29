@@ -61,6 +61,15 @@ public class RequestHandler {
         }
 
     }
+    public static String getName(){
+        try{
+            send.writeUTF("name");
+            return receive.readUTF();
+        }catch (IOException ioException){
+            ioException.printStackTrace();
+            return null;
+        }
+    }
     public static void handleUploadReq(String fileName){
         try{
             send.writeUTF("upload:" +fileName);

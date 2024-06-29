@@ -9,21 +9,25 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
 
-import static costant.Constant.FRAME_SIZE;
-import static costant.Constant.PORT;
+import static costant.Constant.*;
 
 public class Menu {
+    private String user;
     final File[] fileToUpload = new File[1];
+    String[] toDow = new String[1];
     JScrollPane scrollPane;
     JPanel fileRow;
     JPanel jPanel;
     JFrame jFrame;
 
     public Menu() {
-        jFrame = new JFrame(MyUser.getINSTANCE().getUsername());
+
+        RequestHandler.establishConnection("127.0.0.1", PORT);
+        user = RequestHandler.getName();
+        RequestHandler.end();
+
+        jFrame = new JFrame(user);
         jFrame.setSize(FRAME_SIZE, FRAME_SIZE);
         jFrame.setLayout(new BoxLayout(jFrame.getContentPane(), BoxLayout.Y_AXIS));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +41,10 @@ public class Menu {
 
         JButton uploadedFiles = new JButton("uploaded files");
         uploadedFiles.addActionListener(e -> {
+            RequestHandler.establishConnection("127.0.0.1", PORT);
             String response = RequestHandler.handleUploadedFiles();
+            RequestHandler.end();
+
             assert response != null;
             showUploadedFiles(response);
         });
@@ -59,17 +66,11 @@ public class Menu {
         });
 
         dow.addActionListener(e -> {
-            String fileToDow = showFiles();
-            if(fileToDow != null) {
-                RequestHandler.establishConnection("127.0.0.1", PORT);
-                RequestHandler.handleDowReq(fileToDow);
-                RequestHandler.end();
-                SendAndRecieve recieve = new SendAndRecieve();
-                recieve.establishConnection("127.0.0.1", PORT);
-                recieve.fileReceiver.path = "client";
-                recieve.fileReceiver.fileName = fileToDow;
-                recieve.receive();
-            }
+            RequestHandler.establishConnection("127.0.0.1", PORT);
+            String[] fileNames = RequestHandler.handledowFiles().split("/");
+            RequestHandler.end();
+
+            downloadFrame(fileNames);
         });
         upload.addActionListener(e -> {
             if(fileToUpload[0] != null){
@@ -77,13 +78,57 @@ public class Menu {
                 RequestHandler.handleUploadReq(fileToUpload[0].getName());
                 RequestHandler.end();
                 SendAndRecieve send = new SendAndRecieve();
-                send.establishConnection("127.0.0.1", PORT);
+                send.establishConnection("127.0.0.1");
                 send.send(fileToUpload[0]);
-                if(send.done){
-                    MyUser.getINSTANCE().getFiles().add(fileToUpload[0]);
-                }
             }
         });
+    }
+    private void downloadFrame(String[] fileNames){
+        JFrame filesForDow = new JFrame();
+        filesForDow.setSize(300,300);
+        filesForDow.setLayout(new BoxLayout(filesForDow.getContentPane(), BoxLayout.Y_AXIS));
+        filesForDow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        for (int i = 0; i < fileNames.length; i++) {
+            JLabel button = new JLabel(fileNames[i]);
+            filesForDow.add(button);
+        }
+        JButton back = new JButton("back");
+        back.addActionListener(s -> {
+            filesForDow.dispose();
+        });
+
+        JTextField field = new JTextField("enter the name of the file you want to download");
+
+        String[] toDow = new String[1];
+
+        JButton down = new JButton("download");
+        down.addActionListener(a -> {
+
+            toDow[0] = field.getText();
+            RequestHandler.establishConnection("127.0.0.1", PORT);
+            RequestHandler.handleDowReq(toDow[0]);
+            RequestHandler.end();
+
+
+            recieving(toDow[0]);
+            filesForDow.dispose();
+
+        });
+        filesForDow.add(field);
+        filesForDow.add(down);
+        filesForDow.add(back);
+        filesForDow.setVisible(true);
+    }
+    private void recieving(String fileName){
+        SendAndRecieve recieve = new SendAndRecieve();
+        recieve.establishConnection("127.0.0.1", UDP);
+        recieve.fileReceiver.path = "C:\\Users\\EPSILON\\IdeaProjects\\tamrin5\\client\\src\\main\\java\\data\\userFiles";
+        recieve.fileReceiver.fileName = fileName;
+        recieve.fileReceiver.userName = user;
+        recieve.receive();
+
+
     }
     private void showUploadedFiles(String response){
         JFrame frame = new JFrame();
@@ -99,54 +144,22 @@ public class Menu {
         fileRow = new JPanel();
         fileRow.setLayout(new BoxLayout(fileRow, BoxLayout.Y_AXIS));
 
-        String[] files = response.split("/");
+        if(response != null) {
 
-        for (String s : files) {
-            JLabel fileName = new JLabel(s);
-            fileName.setFont(new Font("Ariel", Font.BOLD, 20));
-            fileName.setBorder(new EmptyBorder(10, 0, 10, 0));
+            String[] files = response.split("/");
 
-            fileRow.add(fileName);
+            for (String s : files) {
+                JLabel fileName = new JLabel(s);
+                fileName.setFont(new Font("Ariel", Font.BOLD, 20));
+                fileName.setBorder(new EmptyBorder(10, 0, 10, 0));
+
+                fileRow.add(fileName);
+            }
         }
 
         panel.add(fileRow);
         frame.add(scrollPane);
         frame.setVisible(true);
-    }
-    public String showFiles(){
-        RequestHandler.establishConnection("127.0.0.1", PORT);
-        String[] fileNames = RequestHandler.handledowFiles().split("/");
-        JFrame filesForDow = new JFrame();
-        filesForDow.setSize(300,300);
-        filesForDow.setLayout(new BoxLayout(filesForDow.getContentPane(), BoxLayout.Y_AXIS));
-
-        for (int i = 0; i < fileNames.length; i++) {
-            JLabel button = new JLabel(fileNames[i]);
-            filesForDow.add(button);
-        }
-        JButton back = new JButton("back");
-        back.addActionListener(e -> {
-            filesForDow.dispose();
-        });
-
-        JTextField field = new JTextField("enter the name of the file you want to download");
-
-        String[] toDow = new String[1];
-
-        JButton dow = new JButton("download");
-        dow.addActionListener(e -> {
-             toDow[0] = field.getText();
-             filesForDow.dispose();
-        });
-        filesForDow.add(field);
-        filesForDow.add(dow);
-        filesForDow.add(back);
-        filesForDow.setVisible(true);
-
-        if(toDow[0] != null)filesForDow.dispose();
-        if(!field.getText().equals("enter the name of the file you want to download"))
-            return field.getText();
-        return null;
     }
 
 

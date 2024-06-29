@@ -7,15 +7,11 @@ import threads.FileSender;
 import util.Hasher;
 
 import java.io.File;
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-import static costant.Constant.PART_SIZE;
-import static costant.Constant.PORT;
+import static costant.Constant.*;
 import static util.Util.createNewUser;
 import static util.Util.getFile;
 
@@ -28,13 +24,13 @@ public class Response {
             done = true;
         }if(!done){
             for (MyUser u :
-                    Data.getINSTANCE().getUsers()) {
+                    new Data().getUsers()) {
                 if(data[1].equals(u.getUsername())){
                     if(Hasher.hashPassword(data[2]).equals(u.getPassword())){
                         response = "access granted";
                         MyUser.setINSTANCE(u);
-                        //todo
-                        MyUser.getINSTANCE().setFiles(u.getFiles());
+                        System.out.println( MyUser.getINSTANCE().getUsername() + " is on");
+
                     }else {
                         response = "wrong password";
                     }
@@ -48,11 +44,19 @@ public class Response {
         return response;
     }
     public static String uploadedFile(){
-        return Data.userFiles();
+        File file = new File("C:\\Users\\EPSILON\\IdeaProjects\\tamrin5\\srever\\src\\main\\java\\data\\userFiles\\" + MyUser.getINSTANCE().getUsername());
+        File[] files = file.listFiles();
+        StringBuilder response = new StringBuilder();
+        for (File f : files) {
+            response.append(f.getName());
+            if(f.equals(files[files.length - 1]))break;
+            response.append("/");
+        }
+        return response.toString();
     }
     public static String signUpResponse(String[] data){
         for (MyUser u :
-                Data.getINSTANCE().getUsers()) {
+                new Data().getUsers()) {
             if(data[1].equals(u.getUsername())){
                 response = "this username is taken";
                 done = true;
@@ -80,7 +84,8 @@ public class Response {
             File file = getFile(fileName);
             if(file != null) {
                 FileSender fileSender = new FileSender(file);
-                fileSender.sendPartFiles(InetAddress.getByAddress("localhost".getBytes()), new DatagramSocket(), PORT);
+                //todo
+                fileSender.sendPartFiles(InetAddress.getByName("127.0.0.1"), new DatagramSocket(), UDP);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -88,9 +93,10 @@ public class Response {
     }
     public static void uploadResponse(String fileName){
         try{
-          FileReceiver fileReceiver = new FileReceiver(new DatagramSocket(PORT));
-          fileReceiver.path = "server";
+          FileReceiver fileReceiver = new FileReceiver(new DatagramSocket(UDP));
+          fileReceiver.path = "C:\\Users\\EPSILON\\IdeaProjects\\tamrin5\\srever\\src\\main\\java\\data\\userFiles";
           fileReceiver.fileName = fileName;
+          fileReceiver.userName = MyUser.getINSTANCE().getUsername();
           fileReceiver.start();
         }catch (Exception e){
             e.printStackTrace();

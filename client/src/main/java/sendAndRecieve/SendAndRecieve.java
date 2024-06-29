@@ -7,9 +7,10 @@ import java.io.File;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+import static costant.Constant.UDP;
+
 
 public class SendAndRecieve {
-    public boolean done;
     private DatagramSocket socket;
     private int port;
     private String address;
@@ -21,6 +22,15 @@ public class SendAndRecieve {
         this.port = port;
         try{
            socket = new DatagramSocket(port);
+            fileReceiver = new FileReceiver(socket);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public  void establishConnection(String address){
+        this.address = address;
+        try{
+            socket = new DatagramSocket();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -28,17 +38,28 @@ public class SendAndRecieve {
     public void send(File file){
         try {
             fileSender = new FileSender(file);
-            fileSender.sendPartFiles(InetAddress.getByName(address), socket, port);
-            done = true;
+            fileSender.sendPartFiles(InetAddress.getByName(address), socket, UDP);
+            while (true){
+                if(fileSender.done){
+                    socket.close();
+                    break;
+                }
+            }
+
         }catch (Exception e){
             e.printStackTrace();
         }
     }
     public void receive(){
         try{
-            fileReceiver = new FileReceiver(socket);
+
             fileReceiver.start();
-            done = true;
+            while (true){
+                if(fileReceiver.done){
+                    socket.close();
+                    break;
+                }
+            }
         }catch (Exception u){
             u.printStackTrace();
         }

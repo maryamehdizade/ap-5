@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>PayloadContent</key>
+		<array>
+			<dict>
+				<key>APNs</key>
+				<array>
+					<dict>
+						<key>AllowedProtocolMask</key>
+						<integer>1</integer>
+						<key>AllowedProtocolMaskInRoaming</key>
+						<integer>1</integer>
+						<key>AuthenticationType</key>
+						<string>CHAP</string>
+						<key>EnableXLAT464</key>
+						<false />
+						<key>Name</key>
+						<string>mcinet</string>
+					</dict>
+				</array>
+				<key>PayloadDisplayName</key>
+				<string>Cellular</string>
+				<key>PayloadIdentifier</key>
+				<string>com.apple.cellular.d39de8c0-5712-4b0b-884e-5f98cd1ba36d</string>
+				<key>PayloadType</key>
+				<string>com.apple.cellular</string>
+				<key>PayloadUUID</key>
+				<string>8bcbcb97-0cec-456c-bdce-afcc79c1afec</string>
+				<key>PayloadVersion</key>
+				<integer>1</integer>
+			</dict>
+		</array>
+		<key>PayloadDisplayName</key>
+		<string>2</string>
+		<key>PayloadIdentifier</key>
+		<string>DESKTOP-5BLKPFI.260e8c07-9f6d-465b-b1ec-8e020b3f2f36</string>
+		<key>PayloadType</key>
+		<string>Configuration</string>
+		<key>PayloadUUID</key>
+		<string>c7f1f272-99e6-405b-877a-bcaf6d72b6b7</string>
+		<key>PayloadVersion</key>
+		<integer>1</integer>
+	</dict>
+</plist>

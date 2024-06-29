@@ -9,7 +9,9 @@ import java.net.InetAddress;
 import static costant.Constant.PART_SIZE;
 
 public class FileSender extends Thread {
+
  private File file;
+ public boolean done;
 
  public FileSender(File file) {
   this.file = file;
@@ -28,9 +30,12 @@ public class FileSender extends Thread {
    }
    Thread.sleep(1000);
 
-   DatagramPacket end = new DatagramPacket("end".getBytes(), 3, address, port);
+   byte[] e = new byte[0];
+   DatagramPacket end = new DatagramPacket(e, 0, address, port);
    socket.send(end);
+   done = true;
    System.out.println("done");
+
 
   } catch (Exception e) {
    e.printStackTrace();
